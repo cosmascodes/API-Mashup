@@ -20,7 +20,7 @@ if (request.status >= 200 && request.status < 400) {
 
         // Create an h1 and set the text content to the film's title
         const h1 = document.createElement('h1')
-        h1.textContent = movie.original_title
+        h1.textContent = movie.title
         // Create a p and set the text content to the film's description
         const p = document.createElement('p')
         movie.description = movie.description.substring(0, 300) // Limit to 300 chars
