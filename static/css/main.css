@@ -14,6 +14,7 @@
 .card {
   margin: 1rem;
   border: 1px solid gray;
+  padding: 10px;
 }
 
 @media screen and (min-width: 600px) {
@@ -30,5 +31,33 @@
         -ms-flex: 1 1 calc(33% - 2rem);
             flex: 1 1 calc(33% - 2rem);
   }
+}
+
+form {
+  border-radius: 5px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 10px;
+  background-color: white;
+  margin: 0 auto;
+}
+
+form input {
+  display: block;
+  margin: 10px;
+}
+
+form input[type="submit"] {
+  margin: 0 auto;
+  background-color: blue;
+  color: #fff;
+  border: transparent;
+  padding: .3rem .8rem;
+  border-radius: 4px;
+}
+
+body {
+  background-color: green;
 }
 /*# sourceMappingURL=main.css.map */
