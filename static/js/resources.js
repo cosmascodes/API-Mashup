@@ -1,19 +1,7 @@
-var config = {
-  client_id: "06fef78a0beb0092952c236091a4ae07",
-  client_secret: "b109eb416300214b66234aec115f8d11cb7ec122b151864cea8ece58034eb95b",
-  redirect_uri: "https://priceless-ride-34b555.netlify.app/",
-  authorization_endpoint: "https://api.myanimelist.net/v2/anime",
-  token_endpoint: "",
-  requested_scopes: ""
-};
-
 let btn = document.getElementById('submit')
 
 btn.addEventListener('click',(e)=>{
   e.preventDefault()
-  let name = document.getElementById('name').value
-  let age = document.getElementById('age').value
-
   const app = document.getElementById('root')
   const container = document.createElement('div')
   container.setAttribute('class', 'container')
@@ -21,67 +9,92 @@ btn.addEventListener('click',(e)=>{
   const ercard = document.createElement('div')
   ercard.setAttribute('class', 'error')
 
-  if(name!="" && age!=""){
-    let form = document.getElementById('form')
-    form.style.display="none"
-      // Create a request variable and assign a new XMLHttpRequest object to it.
-      let request = new XMLHttpRequest()
 
-      // Open a new connection, using the GET request on the URL endpoint
-      request.open('GET', 'https://ghibliapi.herokuapp.com/films', true)
+    const data = null;
 
-      
+    const xhr = new XMLHttpRequest();
+    xhr.withCredentials = true;
 
-      request.onload = function () {
-        // Begin accessing JSON data here
-      let data = JSON.parse(this.response)
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        let res = JSON.parse(this.responseText).data
+        res.forEach(city => {
+          const p = document.createElement('p')
+          p.textContent = city.name
+          container.appendChild(p)
+        });
 
+        // Client credentials
+        var key = 'NMLjvhUh7qmRSMaVFN2Fvw1arr91BgHowPBXILyPnJircuEHVN';
+        var secret = 's0R68dLNjvT30KAzt5yxUMBv5KiwevZORvA76Sh7';
 
-      if (request.status >= 200 && request.status < 400) {
-          data.forEach((movie) => {
-              const card = document.createElement('div')
+        // Call details
+        var org = 'Alabama';
+
+        // Call the API
+        // This is a POST request, because we need the API to generate a new token for us
+
+        
+        fetch('https://api.petfinder.com/v2/oauth2/token', {
+          method: 'POST',
+          body: 'grant_type=client_credentials&client_id=' + key + '&client_secret=' + secret,
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        }).then(function (resp) {
+
+          return resp.json();
+
+        }).then(function (data) {
+
+          // Return a second API call
+          // This one uses the token we received for authentication
+          return fetch('https://api.petfinder.com/v2/animals?location=' + org+'&status=adoptable', {
+            headers: {
+              'Authorization': data.token_type + ' ' + data.access_token,
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          });
+
+        }).then(function (resp) {
+
+          // Return the API response as JSON
+          return resp.json();
+
+        }).then(function (data) {
+
+          // Log the pet data
+
+          let real = data.animals
+          console.log(real)
+          real.forEach(pet => {
+            const card = document.createElement('div')
               card.setAttribute('class', 'card')
-              // Create an h1 and set the text content to the film's title
-              const h1 = document.createElement('h1')
-              const p = document.createElement('p')
-              const d_name = document.createElement('p')
 
+            const h1 = document.createElement('h1')  
+            h1.textContent = pet.name
+            const p = document.createElement('p')
+            p.textContent = pet.species
 
-              h1.textContent = movie.title        
-              movie.description = movie.description.substring(0, 300) // Limit to 300 chars
-              p.textContent = `${movie.description}...` // End with an ellipses
-              d_name.textContent = `Director: ${movie.director}.`
+            container.appendChild(card)
 
-              // Append the cards to the container element
-              container.appendChild(card)
+            card.appendChild(h1)
+            card.appendChild(p)
+          });
 
-              // Each card will contain an h1 and a p
-              card.appendChild(h1)
-              card.appendChild(p)
-              card.appendChild(d_name)
-          })
-        } else {
-          console.log('error')
-        }
+        }).catch(function (err) {
+
+          // Log any errors
+          console.log('something went wrong', err);
+
+        });
+
       }
-      // Send request
-      request.send()
-  }else{
-    let e = document.createElement('p')
-    container.appendChild(ercard)
-    
-    if(name==""&&age==""){      
-      e.textContent = "Please enter your name and age"
-      ercard.appendChild(e)
-    }
-    if(name==""&&age!==""){
-      e.textContent = "Please enter your name"
-      ercard.appendChild(e)
-    }
-    if(name!==""&&age==""){
-      e.textContent = "Please enter your age"
-      ercard.appendChild(e)
-    }
+    });
 
-  }
-})
+    xhr.open("GET", "https://wft-geo-db.p.rapidapi.com/v1/geo/countries/US/regions?limit=10&offset=0");
+    xhr.setRequestHeader("x-rapidapi-key", "5ce095054bmsh260927f0063f782p107502jsn2cfdbb87be56");
+    xhr.setRequestHeader("x-rapidapi-host", "wft-geo-db.p.rapidapi.com");
+
+    xhr.send(data)
+  })
