@@ -11,6 +11,15 @@
       flex-wrap: wrap;
 }
 
+.error {
+  border: 1px solid #e23d3d;
+  color: #e23d3d;
+  width: 100%;
+  text-align: center;
+  border-radius: 5px;
+  margin: 10px;
+}
+
 .card {
   border-radius: 6px;
   background-color: #fff;
@@ -60,6 +69,6 @@ form input[type="submit"] {
 }
 
 body {
-  background-color: green;
+  background-color: #ebf0f2;
 }
 /*# sourceMappingURL=main.css.map */
