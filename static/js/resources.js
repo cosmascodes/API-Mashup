@@ -38,6 +38,10 @@ btn.addEventListener('click',(e)=>{
           cities.push(city.name)
         });
         if(cities.includes(state.value)){
+
+          const para = document.createElement('p')
+          para.textContent = `The following are adoptable pets in ${state.value}`
+          container.appendChild(para)
           // Client credentials
         var key = 'NMLjvhUh7qmRSMaVFN2Fvw1arr91BgHowPBXILyPnJircuEHVN';
         var secret = 's0R68dLNjvT30KAzt5yxUMBv5KiwevZORvA76Sh7';
@@ -77,7 +81,6 @@ btn.addEventListener('click',(e)=>{
 
           let real = data.animals
           real.forEach(pet => {
-            console.log(pet.primary_photo_cropped.small);
             
             let x = document.createElement("IMG");
             x.setAttribute("src", pet.primary_photo_cropped.small);
