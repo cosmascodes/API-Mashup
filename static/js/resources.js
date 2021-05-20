@@ -42,9 +42,6 @@ btn.addEventListener('click',(e)=>{
         var key = 'NMLjvhUh7qmRSMaVFN2Fvw1arr91BgHowPBXILyPnJircuEHVN';
         var secret = 's0R68dLNjvT30KAzt5yxUMBv5KiwevZORvA76Sh7';
 
-        // Call details
-
-        // Call the API
         // This is a POST request, because we need the API to generate a new token for us
 
         
@@ -102,8 +99,9 @@ btn.addEventListener('click',(e)=>{
 
         });
         }else{
+          let pos = Math.floor(Math.random() * 11)
           const p = document.createElement('p')
-          p.textContent = `We could not find adoptable pets in ${state.value}`
+          p.textContent = `We could not find adoptable pets in ${state.value}, try ${cities[pos]}`
           container.appendChild(p)
         }
 
