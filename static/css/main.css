@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+h1, p {
+  display: block;
+}
+
 .container {
   display: -webkit-box;
   display: -ms-flexbox;
