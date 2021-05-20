@@ -96,12 +96,15 @@ btn.addEventListener('click',(e)=>{
             h1.textContent =`Name: ${pet.name}` 
             const p = document.createElement('p')
             p.textContent = `Species: ${pet.species}`
+            const desc = document.createElement('p')
+            desc.textContent = pet.description
 
             container.appendChild(card)
 
             card.appendChild(h1)
             card.appendChild(p)
             card.appendChild(x)
+            card.appendChild(desc)
           });
 
         }).catch(function (err) {
