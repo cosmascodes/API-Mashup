@@ -3,6 +3,10 @@
   margin: 0 auto;
 }
 
+h1 {
+  font-size: 1.2rem;
+}
+
 h1, p {
   display: block;
 }
@@ -86,5 +90,6 @@ form input[type="submit"] {
 
 body {
   background-color: #ebf0f2;
+  font-family: Arial;
 }
 /*# sourceMappingURL=main.css.map */
