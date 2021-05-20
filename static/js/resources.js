@@ -77,6 +77,11 @@ btn.addEventListener('click',(e)=>{
 
           let real = data.animals
           real.forEach(pet => {
+            console.log(pet.primary_photo_cropped.small);
+            
+            let x = document.createElement("IMG");
+            x.setAttribute("src", pet.primary_photo_cropped.small);
+
             const card = document.createElement('div')
               card.setAttribute('class', 'card')
 
@@ -89,6 +94,7 @@ btn.addEventListener('click',(e)=>{
 
             card.appendChild(h1)
             card.appendChild(p)
+            card.appendChild(x)
           });
 
         }).catch(function (err) {
