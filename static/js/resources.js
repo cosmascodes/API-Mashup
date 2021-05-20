@@ -2,6 +2,9 @@ let U_name = document.getElementById("name")
 let gender = document.getElementById("gender")
 let state = document.getElementById("city")
 
+let form = document.getElementById("form")
+
+
 let btn = document.getElementById('submit')
 
 btn.addEventListener('click',(e)=>{
@@ -18,6 +21,7 @@ btn.addEventListener('click',(e)=>{
 
   // Validating user input
   if (U_name.value!==""&&gender.value!==""&&state.value!=="") {
+    form.style.display="none"
     const greeting = document.createElement('h1')
           greeting.textContent = `Hello ${U_name.value}`
           container.appendChild(greeting)
