@@ -40,8 +40,8 @@ h1, p {
 
 .card img {
   position: absolute;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   right: 10px;
   top: 10px;
