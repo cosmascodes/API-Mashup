@@ -76,7 +76,6 @@ btn.addEventListener('click',(e)=>{
           // Log the pet data
 
           let real = data.animals
-          console.log(real)
           real.forEach(pet => {
             const card = document.createElement('div')
               card.setAttribute('class', 'card')
