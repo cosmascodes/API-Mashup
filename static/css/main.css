@@ -37,6 +37,7 @@
   border-radius: 50%;
   right: 10px;
   top: 10px;
+  border: 2px solid blue;
 }
 
 @media screen and (min-width: 600px) {
