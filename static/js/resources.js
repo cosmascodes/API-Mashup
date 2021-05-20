@@ -93,9 +93,9 @@ btn.addEventListener('click',(e)=>{
               card.setAttribute('class', 'card')
 
             const h1 = document.createElement('h1')  
-            h1.textContent = pet.name
+            h1.textContent =`Name: ${pet.name}` 
             const p = document.createElement('p')
-            p.textContent = pet.species
+            p.textContent = `Species: ${pet.species}`
 
             container.appendChild(card)
 
